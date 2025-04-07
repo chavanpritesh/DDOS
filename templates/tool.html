@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DDoS Detection Tool</title>
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #00c3ff;
+    }
+
+    form {
+      background-color: #1e1e1e;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      font-size: 0.9em;
+      color: #ddd;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2a2a2a;
+      color: #f1f1f1;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 5px #00c3ff;
+    }
+
+    button {
+      width: 100%;
+      background-color: #00c3ff;
+      color: #000;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #009ec3;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #2b2b2b;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1.1em;
+      text-align: center;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>DDoS Detection System</h2>
+
+  <form method="POST">
+    <label for="packet_rate">Packet Rate</label>
+    <input type="number" step="any" name="packet_rate" required>
+
+    <label for="src_ip_count">Source IP Count</label>
+    <input type="number" name="src_ip_count" required>
+
+    <label for="dst_port">Destination Port</label>
+    <input type="number" name="dst_port" required>
+
+    <label for="protocol">Protocol</label>
+    <select name="protocol" required>
+      <option value="TCP">TCP</option>
+      <option value="UDP">UDP</option>
+      <option value="ICMP">ICMP</option>
+    </select>
+
+    <button type="submit">Detect</button>
+  </form>
+
+  {% if result %}
+    <div class="result">{{ result }}</div>
+  {% endif %}
+
+</body>
+</html>
